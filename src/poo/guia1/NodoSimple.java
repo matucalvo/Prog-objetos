@@ -1,8 +1,8 @@
-package poo.lista;
+package poo.guia1;
 
-public class Nodo {
+public class NodoSimple {
     private Object dato;
-    private Nodo proximo = null;
+    private NodoSimple proximo = null;
 
     public void setDato(Object dato){
         this.dato = dato;
@@ -12,12 +12,12 @@ public class Nodo {
         return dato;
     }
 
-    public void setProximo(Nodo nodo){
-        this.proximo = nodo;
+    public void setProximo(NodoSimple nodo){
+        proximo = nodo;
     }
 
 
-    public Nodo getProximo(){
+    public NodoSimple getProximo(){
         return proximo;
     }
 

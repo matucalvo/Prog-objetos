@@ -1,13 +1,13 @@
-package poo.lista;
+package poo.guia1;
 
-public class Lista {
-    private Nodo primero = null;
-
-
+public class ListaSimple {
+    private NodoSimple primero = null;
 
 
-    public Lista crearLista(){
-        return new Lista();
+
+
+    public ListaSimple crearLista(){
+        return new ListaSimple();
     }
 
     public boolean es_vacia(){
@@ -15,7 +15,7 @@ public class Lista {
     }
 
     public int longitud(){
-        Nodo aux = primero;
+        NodoSimple aux = primero;
         int longitud = 0;
 
         while (aux != null){
@@ -28,14 +28,14 @@ public class Lista {
 
 
     public void agregar(Object dato){
-        Nodo nuevoNodo = new Nodo();
+        NodoSimple nuevoNodo = new NodoSimple();
         nuevoNodo.setDato(dato);
 
         if (primero == null) {
             primero = nuevoNodo;
         }
         else {
-            Nodo aux = primero;
+            NodoSimple aux = primero;
 
             while (aux.getProximo() != null){
                 aux = aux.getProximo();
@@ -47,7 +47,7 @@ public class Lista {
     }
 
     public void mostrar(){
-        Nodo aux = primero;
+        NodoSimple aux = primero;
         int i = 1;
 
         if (aux == null){
@@ -62,8 +62,9 @@ public class Lista {
 
     }
 
+
     public boolean buscar(Object dato){
-        Nodo aux = primero;
+        NodoSimple aux = primero;
         boolean condicion = false;
 
         if (aux == null){
@@ -82,8 +83,8 @@ public class Lista {
 
 
     public void insertar(Object dato, int posicion){
-        Nodo aux = primero;
-        Nodo nuevoNodo = new Nodo();
+        NodoSimple aux = primero;
+        NodoSimple nuevoNodo = new NodoSimple();
         nuevoNodo.setDato(dato);
         int i = 1;
 
@@ -101,7 +102,7 @@ public class Lista {
                 return;
             }
 
-            Nodo aux1 = aux.getProximo();
+            NodoSimple aux1 = aux.getProximo();
             aux.setProximo(nuevoNodo);
             nuevoNodo.setProximo(aux1);
 
@@ -109,7 +110,41 @@ public class Lista {
 
     }
 
-    public void eliminar(Object posicion){
+    public Object recuperar(int posicion){
+        NodoSimple aux = primero;
+        int i = 1;
+
+        while ((aux != null) && (i != posicion)){
+            i++;
+            aux = aux.getProximo();
+        }
+
+        if (aux == null){
+            System.out.println("Posicion no encontrada");
+            return null;
+        } else return aux.getDato();
+
+
+    }
+
+    public void eliminar(int posicion){
+        NodoSimple aux = primero;
+
+        int i = 1;
+
+        while ((aux != null) && (i != posicion-1)){
+            aux = aux.getProximo();
+            i++;
+        }
+
+        if (aux != null){
+            NodoSimple temp = aux.getProximo();
+            aux.setProximo(temp.getProximo());
+
+        } else System.out.println("Posicion no encontrada");
+
+
+
 
     }
 }
