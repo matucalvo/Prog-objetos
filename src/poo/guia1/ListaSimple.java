@@ -102,6 +102,7 @@ public class ListaSimple {
                 return;
             }
 
+
             NodoSimple aux1 = aux.getProximo();
             aux.setProximo(nuevoNodo);
             nuevoNodo.setProximo(aux1);
