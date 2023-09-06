@@ -1,11 +1,19 @@
-import poo.guia1.Cola;
-import poo.guia1.ListaDoble;
-import poo.guia1.ListaSimple;
-import poo.guia1.Pila;
+import poo.guia1.*;
 
 import java.awt.font.FontRenderContext;
+import java.time.LocalDate;
+import java.util.Calendar;
+import java.util.Date;
+import java.util.GregorianCalendar;
+import java.util.Scanner;
 
 public class Main {
+
+    public static void auxiliarEstado(boolean estado){
+        if (estado){
+            System.out.println("Su tarea ya ha sido realizada");
+        } else System.out.println("Su tarea no ha sido realizada");
+    }
     public static void main(String[] args) {
 
         // EJERCICIO 1
@@ -167,14 +175,115 @@ public class Main {
         System.out.println(cola.frente());
 
 
+        /* / EJERCICIO 5 */
+
+        LocalDate fechaActual = LocalDate.now();
+
+        System.out.println("\n --------------------------------------------------------------------\n");
+
+        System.out.println("\n EJERCICIO 5 \n");
+
+
+        Tarea tarea1 = new Tarea("Ir al supermercado mañana", false, Prioridades.RELEVANTE);
+        Tarea tarea2 = new Tarea("Consultar repuesto del auto", true, Prioridades.IRRELEVANTE);
+        Tarea tarea3 = new Tarea("Ir al cine a ver la nueva pelicula de Marvel", false, Prioridades.IRRELEVANTE);
+
+        System.out.println("Mostramos las 3 tareas que creamos: \n");
+        tarea1.mostrarTarea();
+        tarea2.mostrarTarea();
+        tarea3.mostrarTarea();
+
+        System.out.println("\nLa tarea 1 esta terminada? ");
+        auxiliarEstado(tarea1.verificarEstado());
+
+        System.out.println("\nLa tarea 2 esta terminada? ");
+        auxiliarEstado(tarea2.verificarEstado());
+
+        System.out.println("\nLa tarea 3 esta terminada? ");
+        auxiliarEstado(tarea3.verificarEstado());
+
+
+        // EJERCICIO 6 //
+
+        System.out.println("\n --------------------------------------------------------------------\n");
+
+        System.out.println("\n EJERCICIO 6 \n");
+
+        System.out.println(" Clase Biblioteca:\n" +
+                "Estructura: \n" +
+                "Parametros: Un ArrayList de Libros\n" +
+                "Comportamiento: agregarLibro(), mostrarLibro(), contarPrestamos(), libroConMayorPaginas()\n");
+
+        System.out.println(" Clase Libro:\n" +
+                "Estructura: \n" +
+                "Parametros: autor, titulo, ejemplares, ejemplaresDisponibles, numeroPaginas, cantPrestamos\n" +
+                "Comportamiento: un constructor para que instancie todos los parametros de cada objeto en especifico, \n" +
+                "setCantidadDisponible(), prestar(), devolver(), y demas getters\n");
+
+        Biblioteca biblioteca = new Biblioteca();
+
+        Libro libro1 = new Libro("Franz Kafka", "La metamorfosis", 266, 10);
+        Libro libro2 = new Libro("George Orwell", "1985", 366, 1);
+
+        biblioteca.agregarLibro(libro1);
+        biblioteca.agregarLibro(libro2);
+
+        System.out.println("Creamos y mostramos el primer libro: \n");
+
+
+        biblioteca.mostrarLibro(libro1);
+
+        System.out.println("Hacemos un prestamo del mismo: \n");
+        libro1.prestar();
+        biblioteca.mostrarLibro(libro1);
+
+
+        System.out.println("\n Creamos y mostramos el segundo libro: \n");
+
+
+        biblioteca.mostrarLibro(libro2);
+
+        System.out.println("\n Hacemos un prestamo del mismo: \n");
+        libro2.prestar();
+        biblioteca.mostrarLibro(libro2);
+
+
+        biblioteca.libroConMayorPaginas();
+        System.out.println("Cantidad total de prestamos hechos por la biblioteca: " + biblioteca.contPrestamos());
 
 
 
+        System.out.println("\n --------------------------------------------------------------------\n");
 
+        System.out.println("\n EJERCICIO 8 \n");
 
+        //ColeccionPass coleccionPasswords = getColeccionPass();
 
+        //coleccionPasswords.mostrarColeccion();
 
+        //coleccionPasswords.hacerQueTodasLasPassSeanFuertes();
 
+        System.out.println("Modificando las debiles: \n");
+
+        //coleccionPasswords.mostrarColeccion();
+
+        System.out.println("\n --------------------------------------------------------------------\n");
+
+        System.out.println("\n EJERCICIO 9 \n");
+
+        System.out.println("Estructura: \n" +
+                "Atributos: String fecha \n" +
+                "Comportamiento: transformarFecha(), esMayor(), esMenor(), getFecha(), y ver si se encuentra entre dos fechas \n");
+
+        Fecha fecha = new Fecha("2023-09-05");
+
+        System.out.println("Fecha: " +
+                fecha.getFecha());
+
+        System.out.println(fecha.esMayor("2023-09-06"));
+        System.out.println(fecha.esMenor("2023-09-06"));
+
+        System.out.println(fecha.seEncuentraEntreDosFechas("2023-09-06", "2023-09-08"));
 
 
 
@@ -182,4 +291,32 @@ public class Main {
 
 
     }
+
+    private static ColeccionPass getColeccionPass() {
+        Scanner sc = new Scanner(System.in);
+        ColeccionPass coleccionPasswords = new ColeccionPass();
+
+
+        int opcion = 1;
+        int longitud = 0;
+
+
+        System.out.println("Ingrese cantidad de passwords que desea crear: \n");
+        longitud = sc.nextInt();
+
+        for (int i = 0; i < longitud; i++){
+            System.out.println("Ingrese una longitud: \n");
+            opcion = sc.nextInt();
+            Password contraseña = new Password();
+            contraseña.setPassword(opcion);
+            coleccionPasswords.addPassword(contraseña);
+        }
+
+
+
+
+
+        return coleccionPasswords;
+    }
+
 }
