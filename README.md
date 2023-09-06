@@ -1,5 +1,5 @@
 # Prog-objetos
-Trabajos practicos de la materia programacion orientada a objetos
+TP 1 - Intro POO / Ligas, Asociaciones y Relaciones
 
 MATEO VALENTIN CALVO
 
