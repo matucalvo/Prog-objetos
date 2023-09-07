@@ -1,7 +1,6 @@
-package poo.guia1;
+package poo.guia1.ejercicio8;
 
 import java.util.ArrayList;
-import java.util.Iterator;
 
 public class ColeccionPass {
     private ArrayList<Password> coleccion = new ArrayList<Password>();

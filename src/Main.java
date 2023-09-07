@@ -1,10 +1,19 @@
-import poo.guia1.*;
+import poo.guia1.ejercicio1.ListaSimple;
+import poo.guia1.ejercicio11.Diccionario;
+import poo.guia1.ejercicio11.Juego;
+import poo.guia1.ejercicio11.Jugador;
+import poo.guia1.ejercicio2.ListaDoble;
+import poo.guia1.ejercicio3.Pila;
+import poo.guia1.ejercicio4.Cola;
+import poo.guia1.ejercicio5y10.Prioridades;
+import poo.guia1.ejercicio5y10.Tarea;
+import poo.guia1.ejercicio6.Biblioteca;
+import poo.guia1.ejercicio6.Libro;
+import poo.guia1.ejercicio8.ColeccionPass;
+import poo.guia1.ejercicio8.Password;
+import poo.guia1.ejercicio9.Fecha;
 
-import java.awt.font.FontRenderContext;
 import java.time.LocalDate;
-import java.util.Calendar;
-import java.util.Date;
-import java.util.GregorianCalendar;
 import java.util.Scanner;
 
 public class Main {
@@ -257,15 +266,15 @@ public class Main {
 
         System.out.println("\n EJERCICIO 8 \n");
 
-        //ColeccionPass coleccionPasswords = getColeccionPass();
+        ColeccionPass coleccionPasswords = getColeccionPass();
 
-        //coleccionPasswords.mostrarColeccion();
+        coleccionPasswords.mostrarColeccion();
 
-        //coleccionPasswords.hacerQueTodasLasPassSeanFuertes();
+        coleccionPasswords.hacerQueTodasLasPassSeanFuertes();
 
         System.out.println("Modificando las debiles: \n");
 
-        //coleccionPasswords.mostrarColeccion();
+        coleccionPasswords.mostrarColeccion();
 
         System.out.println("\n --------------------------------------------------------------------\n");
 
@@ -284,6 +293,73 @@ public class Main {
         System.out.println(fecha.esMenor("2023-09-06"));
 
         System.out.println(fecha.seEncuentraEntreDosFechas("2023-09-06", "2023-09-08"));
+
+        System.out.println("\n --------------------------------------------------------------------\n");
+
+        System.out.println("\n EJERCICIO 10 - EXTENSION CLASE TAREA \n");
+
+        System.out.println("Estructura: \n" +
+                "Atributos: boolean estado, enum prioridad, LocalDate fechaRecordatorio, String descripcion  \n" +
+                "Comportamiento: modificarDescripcion(), tareaTerminada(), mostrarTarea(), verificarEstado(), y setFechaRecordatorio() \n");
+
+        tarea1.setFechaRecordatorio("2023-11-06");  //por vencer
+        tarea2.setFechaRecordatorio("2023-07-06");
+        tarea3.setFechaRecordatorio("2023-09-06");
+
+        tarea1.mostrarTarea();
+        tarea2.mostrarTarea();
+        tarea3.mostrarTarea();
+
+
+        System.out.println("\n --------------------------------------------------------------------\n");
+
+        System.out.println("\n EJERCICIO 11  \n");
+
+        System.out.println("\n Objetos que participan del problema: \n" +
+                "'juego' de la clase Juego \n" +
+                "'jugador1' y 'jugador2' de la clase Jugador\n" +
+                "'diccionario' de la clase Diccionario\n");
+
+        System.out.println("Existen asociaciones de comunicacion entre las clases Juego y Jugador, " +
+                "ya que Juego tiene que agregar jugadores de la clase Jugador a traves de un metodo, es decir, se lo" +
+                "envia por parametro. \n");
+
+        System.out.println("Tambien hay una asosiacion de conocimiento entre Juego y Jugador, Juego contiene una lista de Jugadores, " +
+                "es decir conoce la existencia de la otra\n");
+
+        System.out.println("Comportamientos de la clase Juego: \n" +
+                "agregar un jugador, calcular cual fue el ganador y mostrar tabla de jugadores \n" +
+                "Comportamiento de la clase Jugador: \n" +
+                "agregar una palabra, calcular el puntaje y algunos getters \n" +
+                "Comportamiento de la clase Diccionario: \n" +
+                "buscar una palabra en el, y agregar una \n");
+
+        Diccionario diccionario = new Diccionario();
+        diccionario.agregarPalabra("oceano", "Masa de agua salada que cubre aproximadamente las tres cuartas partes de la superficie terrestre.");
+        diccionario.agregarPalabra("xilofon", "Instrumento musical");
+
+
+        Juego juego = new Juego();
+        Jugador jugador1 = new Jugador("Mateo");
+        Jugador jugador2 = new Jugador("Lara");
+
+        juego.agregarJugador(jugador1);
+        juego.agregarJugador(jugador2);
+
+        jugador1.agregarPalabra("oceano", diccionario);
+        jugador2.agregarPalabra("xilofon", diccionario);
+
+        jugador1.setPuntaje();
+        jugador2.setPuntaje();
+
+        juego.mostrarTablaPuntos();
+
+
+        juego.ganador();
+
+
+
+
 
 
 

@@ -1,4 +1,4 @@
-package poo.guia1;
+package poo.guia1.ejercicio9;
 
 import java.time.LocalDate;
 

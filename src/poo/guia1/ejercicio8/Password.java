@@ -1,4 +1,4 @@
-package poo.guia1;
+package poo.guia1.ejercicio8;
 import java.util.Random;
 
 public class Password {

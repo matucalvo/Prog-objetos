@@ -1,4 +1,6 @@
-package poo.guia1;
+package poo.guia1.ejercicio3;
+
+import poo.guia1.NodoSimple;
 
 public class Pila {
     private NodoSimple tope = null;

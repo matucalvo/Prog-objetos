@@ -1,4 +1,6 @@
-package poo.guia1;
+package poo.guia1.ejercicio4;
+
+import poo.guia1.NodoSimple;
 
 public class Cola {
     private NodoSimple frente = null;

@@ -1,53 +1,56 @@
-package poo.guia1;
+package poo.guia1.ejercicio2;
 
-public class ListaSimple {
-    private NodoSimple primero = null;
+import poo.guia1.NodoDoble;
+
+public class ListaDoble {
+    private NodoDoble primero = null;
+    private NodoDoble fin = null;
 
 
-
-
-    public ListaSimple crearLista(){
-        return new ListaSimple();
-    }
-
-    public boolean es_vacia(){
-        return primero == null;
+    public boolean esVacia(){
+        return (primero == null && fin == null);
     }
 
     public int longitud(){
-        NodoSimple aux = primero;
-        int longitud = 0;
+        NodoDoble aux = primero;
 
-        while (aux != null){
-            longitud++;
+        int i = 0;
+
+        while(aux != null){
             aux = aux.getProximo();
+            i++;
         }
-
-        return longitud;
+        return i;
     }
 
 
     public void agregar(Object dato){
-        NodoSimple nuevoNodo = new NodoSimple();
+        NodoDoble nuevoNodo = new NodoDoble();
         nuevoNodo.setDato(dato);
 
-        if (primero == null) {
+        if ((primero == null) && (fin == null)){
             primero = nuevoNodo;
-        }
-        else {
-            NodoSimple aux = primero;
+        } else {
+
+            NodoDoble aux = primero;
 
             while (aux.getProximo() != null){
                 aux = aux.getProximo();
             }
 
+
+
             aux.setProximo(nuevoNodo);
+            nuevoNodo.setAnterior(aux);
+            fin = nuevoNodo;
 
         }
+
+
     }
 
     public void mostrar(){
-        NodoSimple aux = primero;
+        NodoDoble aux = primero;
         int i = 1;
 
         if (aux == null){
@@ -63,8 +66,9 @@ public class ListaSimple {
     }
 
 
+
     public boolean buscar(Object dato){
-        NodoSimple aux = primero;
+        NodoDoble aux = primero;
         boolean condicion = false;
 
         if (aux == null){
@@ -83,12 +87,12 @@ public class ListaSimple {
 
 
     public void insertar(Object dato, int posicion){
-        NodoSimple aux = primero;
-        NodoSimple nuevoNodo = new NodoSimple();
+        NodoDoble aux = primero;
+        NodoDoble nuevoNodo = new NodoDoble();
         nuevoNodo.setDato(dato);
         int i = 1;
 
-        if (primero == null || i == posicion){
+        if ((primero == null && fin == null)){
             primero = nuevoNodo;
         } else {
 
@@ -102,17 +106,28 @@ public class ListaSimple {
                 return;
             }
 
+            if (aux.getProximo() == null){
+                aux.setProximo(nuevoNodo);
+                nuevoNodo.setAnterior(aux);
+                fin = nuevoNodo;
+            } else {
+                NodoDoble aux1 = aux.getProximo();
+                aux.setProximo(nuevoNodo);
+                nuevoNodo.setProximo(aux1);
 
-            NodoSimple aux1 = aux.getProximo();
-            aux.setProximo(nuevoNodo);
-            nuevoNodo.setProximo(aux1);
+                aux1.setAnterior(nuevoNodo);
+                nuevoNodo.setAnterior(aux);
+            }
+
+
+
 
         }
 
     }
 
     public Object recuperar(int posicion){
-        NodoSimple aux = primero;
+        NodoDoble aux = primero;
         int i = 1;
 
         while ((aux != null) && (i != posicion)){
@@ -129,7 +144,7 @@ public class ListaSimple {
     }
 
     public void eliminar(int posicion){
-        NodoSimple aux = primero;
+        NodoDoble aux = primero;
 
         int i = 1;
 
@@ -138,9 +153,12 @@ public class ListaSimple {
             i++;
         }
 
+
+
         if (aux != null){
-            NodoSimple temp = aux.getProximo();
+            NodoDoble temp = aux.getProximo();
             aux.setProximo(temp.getProximo());
+            temp.setAnterior(aux.getAnterior());
 
         } else System.out.println("Posicion no encontrada");
 
@@ -148,4 +166,10 @@ public class ListaSimple {
 
 
     }
+
+
+
+
 }
+
+

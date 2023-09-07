@@ -1,4 +1,4 @@
-package poo.guia1;
+package poo.guia1.ejercicio5y10;
 
 import java.time.LocalDate;
 
@@ -30,12 +30,33 @@ public class Tarea {
     }
 
     public void mostrarTarea(){
-        System.out.println(descripcion);
+        StringBuilder cadena = new StringBuilder();
+        LocalDate fechaHoy = LocalDate.now();
+        cadena.append(descripcion);
+
+        if (fechaRecordatorio != null){
+            if (fechaRecordatorio.isAfter(fechaHoy) || fechaRecordatorio.equals(fechaHoy)){
+                cadena.append(" (por vencer)");
+                this.prioridad = Prioridades.RELEVANTE;
+            }
+        }
+
+        cadena.append( " -> " + prioridad);
+
+
+
+        System.out.println(cadena);
     }
 
     public boolean verificarEstado(){
         return estado;
     }
+
+    public void setFechaRecordatorio(String fecha){
+        this.fechaRecordatorio = LocalDate.parse(fecha);
+    }
+
+
 
 
 

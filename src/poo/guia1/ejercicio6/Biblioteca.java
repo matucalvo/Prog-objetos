@@ -1,4 +1,4 @@
-package poo.guia1;
+package poo.guia1.ejercicio6;
 
 import java.util.ArrayList;
 
